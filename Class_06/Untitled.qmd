@@ -1,0 +1,43 @@
+---
+title: "Lopez_Lab6_hw"
+author: "A14837063"
+format: pdf
+---
+
+## Section 1 of lab 6
+
+##Example
+
+```{r}
+library(bio3d)
+s1 <- read.pdb("4AKE") # kinase w/ drug
+s2 <- read.pdb("1AKE") # kinase w/out drug
+s3 <- read.pdb("1E4Y") # kinase w/ drug
+s1.chainA <- trim.pdb(s1, chain="A", elety="CA")
+s2.chainA <- trim.pdb(s2, chain="A", elety="CA")
+s3.chainA <- trim.pdb(s3, chain="A", elety="CA")
+s1.b <- s1.chainA$atom$b
+s2.b <- s2.chainA$atom$b
+s3.b <- s3.chainA$atom$b
+plotb3(s1.b, sse=s1.chainA, typ="l", ylab="Bfactor")
+plotb3(s2.b, sse=s2.chainA, typ="l", ylab="Bfactor")
+plotb3(s3.b, sse=s3.chainA, typ="l", ylab="Bfactor")
+```
+## Optimized code:
+```{r}
+protein_analysis <- function(x) {
+  #f load bio3d library
+  library(bio3d)
+  # read.pdb to load the protein data bank file for the protein name in the query (x)
+  read <- read.pdb(x)
+  # trim.pdb to clean pdb file, will remove the protein structures and only keeping the sequence
+  trim <- trim.pdb(read, chain = "A", elety="CA")
+  #isolate sequence of b row in  atom column
+  choose_atom <- trim$atom$b
+  #blot  B factor and residue number
+  graph <- plotb3(choose_atom, sse=trim, typ="l", ylab="Bfactor")
+  return(protein_analysis)
+}
+#apply  function to several queries in a vector
+sapply(c("4AKE", "1AKE", "1E4Y"), protein_analysis)
+```
