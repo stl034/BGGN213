@@ -7,4 +7,4 @@ Thank you Barry and Steven. Here is a link to keep in touch of my current projec
 
 [Class_10](https://github.com/stl034/BGGN213/blob/main/class10.md)
 
-[Class_06](https://github.com/stl034/BGGN213/blob/main/Class_06.md)
+[Class_06](https://github.com/stl034/BGGN213/blob/main/Lopez_Lab6.md)
